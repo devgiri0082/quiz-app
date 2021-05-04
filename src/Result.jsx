@@ -1,10 +1,8 @@
 import "./Style.css";
 import data from "./data";
 import Table from "./Table";
-import { useHistory } from "react-router-dom";
 
 export default function Result() {
-    let history = useHistory();
     return (
         <div className="result">
             <div className="score">Total Score:</div>
