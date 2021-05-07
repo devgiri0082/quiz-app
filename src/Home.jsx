@@ -32,6 +32,7 @@ export default function Home() {
              return;
             }
     console.log(width);
+      // eslint-disable-next-line
   },[width, counter])
     return(
         <div className="container">
