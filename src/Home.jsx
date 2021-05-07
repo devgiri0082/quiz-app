@@ -17,10 +17,6 @@ export default function Home() {
     let [score, setScore] = useState(0);
     let tempScore = score, answers = choices;
     useEffect(() => {
-        if(Math.floor(width) === 0){
-            DoStuff("", data[counter]);
-             return;
-            }
        setInterval(() => {
           setWidth((width) => width - 0.1);
           console.log(width);
@@ -31,6 +27,10 @@ export default function Home() {
     // eslint-disable-next-line
   },[])
   useEffect(() => {
+      if(Math.floor(width) === 0){
+            DoStuff("", data[counter]);
+             return;
+            }
     console.log(width);
   },[width, counter])
     return(
@@ -49,10 +49,11 @@ export default function Home() {
             </div>
         </div>
     )
-    function DoStuff(value, obj) {
+   async function DoStuff(value, obj, setSelected) {
         if(counter === data.length) {
             return;
         }
+        await delay(300);
         answers = [...choices, value];
         setChoices(answers);
         if(value === obj["answer"]){
@@ -62,11 +63,14 @@ export default function Home() {
         if(counter + 1 < data.length) 
             setQuestionData(data[counter + 1]);
         setCounter(counter+1);
-        console.log(counter);
         if(counter + 1 === data.length){
             navigateToResult();
         }
         setWidth(100);
         setCurrent(0);
+        setSelected("none");
     }
+    function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 }

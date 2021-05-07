@@ -50,8 +50,13 @@ button {
     padding: 25px;
     border-radius: 0px;
     border: 1px solid white;
-    background: none;
+    background: red;
     max-width: 150px;
+
+}
+
+button:hover {
+    background: green;
 }
 
 .loading {
