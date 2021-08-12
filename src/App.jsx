@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect
 } from "react-router-dom";
-import Home from "./Home"
+import Questions from "./Questions"
 import NotFound from "./NotFound";
 import Result from "./Result";
 import "./Style.css";
+import Option from "./Option";
 
-export default function App(props) {return (
-    <Router>
-        <Switch>
-            <Route exact path = "/">
-            <Home />
+export default function App(props) {
+    let [questions, setQuestions] = useState([]);
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <Option setQuestions={setQuestions} />
                 </Route>
-            <Route exact path = "/Result">
-                <Result/>
-            </Route>
-            <Route exact path = "/404">
-            <NotFound/>
-            </Route>
-            <Redirect to = "404">
-        
-            </Redirect>
+                <Route path="/questions">
+                    <Questions questions={questions} />
+                </Route>
+                <Route exact path="/Result">
+                    <Result questions={questions} />
+                </Route>
+                <Route exact path="/404">
+                    <NotFound />
+                </Route>
+                <Redirect to="404">
+
+                </Redirect>
             </Switch>
-    </Router>)
+        </Router>)
 }
